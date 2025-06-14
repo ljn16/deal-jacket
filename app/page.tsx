@@ -46,7 +46,7 @@ export default function Home() {
     draw(form.vin, 120, 605);
     draw(form.color, 120, 580);
     draw(form.purchaseDate, 180, 555);
-    draw(form.email, 120, 405);
+    draw(form.email, 120, 400);
 
     draw(form.stock, 440, 655);
     draw(form.dateSold, 440, 630);
