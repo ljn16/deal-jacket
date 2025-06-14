@@ -1,103 +1,200 @@
-import Image from "next/image";
+// pages/index.tsx
+"use client";
+
+import { useState } from "react";
+import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [form, setForm] = useState({
+    year: "",
+    make: "",
+    vin: "",
+    color: "",
+    purchaseDate: "",
+    email: "",
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+    stock: "",
+    dateSold: "",
+    mileage: "",
+
+    soldTo: "",
+    addressL1: "",
+    addressL2: "",
+    phone: "",
+    salesperson: ""
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const generatePDF = async () => {
+    const existingPdfBytes = await fetch("/deal-printing-template5.pdf").then((res) => res.arrayBuffer());
+    const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    const page = pdfDoc.getPages()[0];
+    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+
+    const draw = (text: string, x: number, y: number, size = 10) => {
+      if (text) {
+        page.drawText(text, { x, y, size, font, color: rgb(0, 0, 0) });
+      }
+    };
+
+    // Adjusted coordinates to match screenshot layout
+    draw(form.year, 120, 655);
+    draw(form.make, 120, 630);
+    draw(form.vin, 120, 605);
+    draw(form.color, 120, 580);
+    draw(form.purchaseDate, 180, 555);
+    draw(form.email, 120, 405);
+
+    draw(form.stock, 440, 655);
+    draw(form.dateSold, 440, 630);
+    draw(form.mileage, 440, 555);
+
+    draw(form.soldTo, 625, 630);
+    draw(form.addressL1, 625, 605);
+    draw(form.addressL2, 625, 580);
+    draw(form.phone, 625, 555);
+    draw(form.salesperson, 625, 530);
+
+
+
+    const pdfBytes = await pdfDoc.save();
+    const blob = new Blob([new Uint8Array(pdfBytes)], { type: "application/pdf" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "filled-template.pdf";
+    link.click();
+  };
+
+  return (
+    <div className="p-6 max-w-4xl mx-auto">
+      <h1 className="text-xl font-bold mb-4">Deal Printing Form</h1>
+      <div className="grid grid-cols-3 gap-8">
+        {/* Vehicle Info */}
+        <div>
+          <h2 className="text-lg font-semibold mb-2">Vehicle Info</h2>
+          <div className="flex flex-col gap-4">
+            <input
+              name="year"
+              placeholder="year"
+              value={form.year}
+              onChange={handleChange}
+              className="border p-2 rounded"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <input
+              name="make"
+              placeholder="make"
+              value={form.make}
+              onChange={handleChange}
+              className="border p-2 rounded"
+            />
+            <input
+              name="vin"
+              placeholder="vin"
+              value={form.vin}
+              onChange={handleChange}
+              className="border p-2 rounded"
+            />
+            <input
+              name="color"
+              placeholder="color"
+              value={form.color}
+              onChange={handleChange}
+              className="border p-2 rounded"
+            />
+            <input
+              name="purchaseDate"
+              placeholder="purchaseDate"
+              value={form.purchaseDate}
+              onChange={handleChange}
+              className="border p-2 rounded"
+            />
+            <input
+              name="email"
+              placeholder="email"
+              value={form.email}
+              onChange={handleChange}
+              className="border p-2 rounded"
+            />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        {/* Stock Details */}
+        <div>
+          <h2 className="text-lg font-semibold mb-2">Stock Details</h2>
+          <div className="flex flex-col gap-4">
+            <input
+              name="stock"
+              placeholder="stock"
+              value={form.stock}
+              onChange={handleChange}
+              className="border p-2 rounded"
+            />
+            <input
+              name="dateSold"
+              placeholder="dateSold"
+              value={form.dateSold}
+              onChange={handleChange}
+              className="border p-2 rounded"
+            />
+            <input
+              name="mileage"
+              placeholder="mileage"
+              value={form.mileage}
+              onChange={handleChange}
+              className="border p-2 rounded"
+            />
+          </div>
+        </div>
+        {/* Customer Info */}
+        <div>
+          <h2 className="text-lg font-semibold mb-2">Customer Info</h2>
+          <div className="flex flex-col gap-4">
+            <input
+              name="soldTo"
+              placeholder="soldTo"
+              value={form.soldTo}
+              onChange={handleChange}
+              className="border p-2 rounded"
+            />
+            <input
+              name="addressL1"
+              placeholder="addressL1"
+              value={form.addressL1}
+              onChange={handleChange}
+              className="border p-2 rounded"
+            />
+            <input
+              name="addressL2"
+              placeholder="addressL2"
+              value={form.addressL2}
+              onChange={handleChange}
+              className="border p-2 rounded"
+            />
+            <input
+              name="phone"
+              placeholder="phone"
+              value={form.phone}
+              onChange={handleChange}
+              className="border p-2 rounded"
+            />
+            <input
+              name="salesperson"
+              placeholder="salesperson"
+              value={form.salesperson}
+              onChange={handleChange}
+              className="border p-2 rounded"
+            />
+          </div>
+        </div>
+      </div>
+      <button
+        onClick={generatePDF}
+        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+      >
+        Generate PDF
+      </button>
     </div>
   );
 }
