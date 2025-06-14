@@ -70,7 +70,7 @@ export default function Home() {
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-xl font-bold mb-4">Deal Printing Form</h1>
+      <h1 className="text-4xl font-bold mb-4 text-center p-10">Deal Jacket Form</h1>
       <div className="grid grid-cols-3 gap-8">
         {/* Vehicle Info */}
         <div>
@@ -188,13 +188,15 @@ export default function Home() {
             />
           </div>
         </div>
+        <div className="col-span-3 mt-4">
+          <button
+            onClick={generatePDF}
+            className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Generate PDF
+          </button>
+        </div>
       </div>
-      <button
-        onClick={generatePDF}
-        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-      >
-        Generate PDF
-      </button>
     </div>
   );
 }
