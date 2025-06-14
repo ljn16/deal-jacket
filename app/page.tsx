@@ -29,7 +29,7 @@ export default function Home() {
   };
 
   const generatePDF = async () => {
-    const existingPdfBytes = await fetch("/deal-printing-template5.pdf").then((res) => res.arrayBuffer());
+    const existingPdfBytes = await fetch("/deal-jacket-template.pdf").then((res) => res.arrayBuffer());
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
     const page = pdfDoc.getPages()[0];
     const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
