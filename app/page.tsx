@@ -62,10 +62,14 @@ export default function Home() {
 
     const pdfBytes = await pdfDoc.save();
     const blob = new Blob([new Uint8Array(pdfBytes)], { type: "application/pdf" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "filled-template.pdf";
-    link.click();
+    const url = URL.createObjectURL(blob);
+    const newWindow = window.open(url);
+    if (newWindow) {
+      newWindow.addEventListener("load", () => {
+        newWindow.focus();
+        newWindow.print();
+      });
+    }
   };
 
   return (
@@ -193,7 +197,7 @@ export default function Home() {
             onClick={generatePDF}
             className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
           >
-            Generate PDF
+            Print Jacket
           </button>
         </div>
       </div>
