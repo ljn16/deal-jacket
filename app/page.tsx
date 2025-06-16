@@ -1,4 +1,3 @@
-// pages/index.tsx
 "use client";
 
 import { useState } from "react";
@@ -26,6 +25,27 @@ export default function Home() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const resetForm = () => {
+    setForm({
+      year: "",
+      make: "",
+      vin: "",
+      color: "",
+      purchaseDate: "",
+      email: "",
+
+      stock: "",
+      dateSold: "",
+      mileage: "",
+
+      soldTo: "",
+      addressL1: "",
+      addressL2: "",
+      phone: "",
+      salesperson: ""
+    });
   };
 
   const generatePDF = async () => {
@@ -190,6 +210,12 @@ export default function Home() {
               onChange={handleChange}
               className="border p-2 rounded"
             />
+            <button
+              onClick={resetForm}
+              className=" p-2 rounded bg-red-600 text-white hover:bg-red-700"
+            >
+              Reset
+            </button>
           </div>
         </div>
         <div className="col-span-3 mt-4">
