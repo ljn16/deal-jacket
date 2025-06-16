@@ -23,6 +23,8 @@ export default function Home() {
     salesperson: ""
   });
 
+  const [mode, setMode] = useState("normal");
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -78,7 +80,16 @@ export default function Home() {
     draw(form.phone, 625, 555);
     draw(form.salesperson, 625, 530);
 
-
+    if (mode === "intake") {
+      draw(form.keyCode || "", 700, 100); // placeholder
+    } else if (mode === "payoff") {
+      draw(form.bank || "", 700, 90);
+      draw(form.city || "", 700, 80);
+      draw(form.accountNumber || "", 700, 70);
+      draw(form.payOff || "", 700, 60);
+      draw(form.goodThrough || "", 700, 50);
+      draw(form.title ? "Yes" : "No", 700, 40);
+    }
 
     const pdfBytes = await pdfDoc.save();
     const blob = new Blob([new Uint8Array(pdfBytes)], { type: "application/pdf" });
@@ -146,13 +157,69 @@ export default function Home() {
               onChange={handleChange}
               className="border p-2 rounded"
             />
-            <input
-              name="color"
-              placeholder="Color"
-              value={form.color}
-              onChange={handleChange}
-              className="border p-2 rounded"
-            />
+            <div className="flex">
+              <input
+                list="colors"
+                name="color"
+                placeholder="Color"
+                value={form.color}
+                onChange={handleChange}
+                className="border border-r-0 p-2 rounded-r-none rounded-l w-full"
+              />
+              <select
+                onChange={(e) => setForm(prev => ({ ...prev, color: e.target.value }))}
+                className="text-xs rounded-l-none rounded-r bg-gradient-to-br from-red-500 via-yellow-400 to-green-500 text-white hover:opacity-90 w-10"
+                title="Honda colors"
+              >
+                
+                <option value="">           
+
+            </option>
+                <option value="Canyon River Blue Metallic">Canyon River Blue</option>
+                {/* <option value="Crystal Black Pearl">Crystal Black Pearl</option> */}
+                <option value="Meteorite Gray Metallic">Meteorite Gray{/*  Metallic */}</option>
+                {/* <option value="Platinum White Pearl">Platinum White Pearl</option> */}
+                {/* <option value="Radiant Red Metallic">Radiant Red Metallic</option> */}
+                {/* <option value="Radiant Red Metallic II">Radiant Red Metallic II</option> */}
+                {/* <option value="Solar Silver Metallic">Solar Silver Metallic</option> */}
+                <option value="Still Night Pearl">Still Night Pearl</option>
+                <option value="Urban Gray Pearl">Urban Gray{/*  Pearl */}</option>
+                <option value="Diffused Sky Blue Pearl">Diffused Sky {/* Blue Pearl */}</option>
+                {/* <option value="Lunar Silver Metallic">Lunar Silver Metallic</option> */}
+                <option value="Sonic Gray Pearl">Sonic Gray{/*  Pearl */}</option>
+                <option value="North Shore Pearl">North Shore{/*  Pearl */}</option>
+                {/* <option value="Scarlet Red Metallic">Scarlet Red Metallic</option> */}
+                <option value="Pacific Blue Metallic">Pacific Blue{/*  Metallic */}</option>
+                {/* <option value="Raven Black">Raven Black</option> */}
+                {/* <option value="Mercury Silver Metallic">Mercury Silver Metallic</option> */}
+                {/* <option value="Snowfall Pearl">Snowfall Pearl</option> */}
+                <option value="Blue Lagoon Pearl">Blue Lagoon{/*  Pearl */}</option>
+                {/* <option value="Rallye Red">Rallye Red</option> */}
+                <option value="Modern Steel Metallic">Modern Steel{/*  Metallic */}</option>
+                <option value="Obsidian Blue Pearl">Obsidian Blue{/*  Pearl */}</option>
+                <option value="Ash Green Metallic">Ash Green{/*  Metallic */}</option>
+                <option value="Sunset Orange">Sunset Orange</option>
+                <option value="Boost Blue Pearl">Boost Blue{/*  Pearl */}</option>
+                {/* <option value="Milano Red">Milano Red</option> */}
+              </select>
+            </div>
+            <datalist id="colors">
+              <option value="Black" />
+              <option value="White" />
+              <option value="Gray" />
+              <option value="Silver" />
+              <option value="Red" />
+              <option value="Blue" />
+              <option value="Green" />
+              {/* <option value="Yellow" /> */}
+              {/* <option value="Orange" /> */}
+              {/* <option value="Brown" /> */}
+              {/* <option value="Gold" /> */}
+              {/* <option value="Beige" /> */}
+              {/* <option value="Purple" /> */}
+              {/* <option value="Maroon" /> */}
+              {/* <option value="Navy" /> */}
+            </datalist>
             <div className="flex">
               <input
                 name="purchaseDate"
@@ -305,21 +372,101 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="col-span-3 mt-4">
-          <button
-            onClick={generatePDF}
-            className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        <div className="flex justify-center col-span-3 relative group">
+          <select
+            value={mode}
+            onChange={(e) => setMode(e.target.value)}
+            className="bg-gray-100 text-gray-800 px-4 py-2 rounded border"
           >
-            <span className="flex items-center justify-center gap-2 font-bold">
-              <img
-                src="/icons/print-icon-white.png"
-                alt="Print Icon"
-                className="w-4 h-4"
-              />
-              Print Jacket
-            </span>
-          </button>
+            <option value="normal">Normal Mode</option>
+            <option value="intake">Intake Mode</option>
+            <option value="payoff">Payoff Mode</option>
+            <option value="billing">Billing Mode</option>
+          </select>
+          <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            additional modes not currently setup
+          </span>
         </div>
+        {mode !== "normal" && (
+          <div>
+            <h2 className="text-lg font-semibold mb-2 text-center capitalize">{mode} mode</h2>
+            <div className="flex flex-col gap-4">
+              {mode === "intake" && (
+                <input
+                  name="keyCode"
+                  placeholder="Key Code"
+                  value={form.keyCode || ""}
+                  onChange={handleChange}
+                  className="border p-2 rounded"
+                />
+              )}
+              {mode === "payoff" && (
+                <>
+                  <input
+                    name="bank"
+                    placeholder="Bank"
+                    value={form.bank || ""}
+                    onChange={handleChange}
+                    className="border p-2 rounded"
+                  />
+                  <input
+                    name="city"
+                    placeholder="City"
+                    value={form.city || ""}
+                    onChange={handleChange}
+                    className="border p-2 rounded"
+                  />
+                  <input
+                    name="accountNumber"
+                    placeholder="Account Number"
+                    value={form.accountNumber || ""}
+                    onChange={handleChange}
+                    className="border p-2 rounded"
+                  />
+                  <input
+                    name="payOff"
+                    placeholder="Pay Off"
+                    value={form.payOff || ""}
+                    onChange={handleChange}
+                    className="border p-2 rounded"
+                  />
+                  <input
+                    name="goodThrough"
+                    placeholder="Good Through"
+                    value={form.goodThrough || ""}
+                    onChange={handleChange}
+                    className="border p-2 rounded"
+                  />
+                  <label className="inline-flex items-center">
+                    <input
+                      type="checkbox"
+                      name="title"
+                      checked={form.title || false}
+                      onChange={(e) => setForm({ ...form, title: e.target.checked })}
+                      className="mr-2"
+                    />
+                    Title
+                  </label>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+      <div className="col-span-3 mt-4">
+        <button
+          onClick={generatePDF}
+          className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          <span className="flex items-center justify-center gap-2 font-bold">
+            <img
+              src="/icons/print-icon-white.png"
+              alt="Print Icon"
+              className="w-4 h-4"
+            />
+            Print Jacket
+          </span>
+        </button>
       </div>
     </div>
   );
