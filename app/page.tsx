@@ -204,12 +204,33 @@ export default function Home() {
               className="border p-2 rounded"
             />
             <input
+              list="salespeople"
               name="salesperson"
               placeholder="Salesperson"
               value={form.salesperson}
               onChange={handleChange}
               className="border p-2 rounded"
             />
+            <datalist id="salespeople">
+              <option value="Logan" />
+              <option value="Myles" />
+              <option value="Joel" />
+              <option value="Bobby" />
+              <option value="John" />
+              <option value="Ricky" />
+              <option value="Marcus" />
+              <option value="Andy" />
+              <option value="Jose" />
+              <option value="Tony" />
+              <option value="Jacob" />
+              <option value="Jessica" />
+              <option value="Evan" />
+              <option value="Steve" />
+              <option value="Chris" />
+              <option value="Paul" />
+              <option value="Neha" />
+              <option value="Hilowle" />
+            </datalist>
             <button
               onClick={resetForm}
               className=" p-2 rounded bg-red-600 text-white hover:bg-red-700"
