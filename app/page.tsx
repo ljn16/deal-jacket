@@ -104,7 +104,7 @@ export default function Home() {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="relative p-6 max-w-4xl mx-auto">
       <h1 className="text-4xl font-bold mb-4 text-center p-10">Deal Jacket Form</h1>
       <div className="grid grid-cols-3 gap-8">
         {/* Vehicle Info */}
@@ -175,31 +175,33 @@ export default function Home() {
                 <option value="">           
 
             </option>
-                <option value="Canyon River Blue Metallic">Canyon River Blue</option>
-                {/* <option value="Crystal Black Pearl">Crystal Black Pearl</option> */}
                 <option value="Meteorite Gray Metallic">Meteorite Gray{/*  Metallic */}</option>
+                <option value="Modern Steel Metallic">Modern Steel{/*  Metallic */}</option>
+                <option value="Urban Gray Pearl">Urban Gray{/*  Pearl */}</option>
+                <option value="Sonic Gray Pearl">Sonic Gray{/*  Pearl */}</option>
+
+                <option value="Canyon River Blue Metallic">Canyon River Blue</option>
+                <option value="Still Night Pearl">Still Night Pearl</option>
+                <option value="Diffused Sky Blue Pearl">Diffused Sky{/* Blue Pearl */}</option>
+                <option value="Blue Lagoon Pearl">Blue Lagoon{/*  Pearl */}</option>
+                <option value="Obsidian Blue Pearl">Obsidian Blue{/*  Pearl */}</option>
+                <option value="Boost Blue Pearl">Boost Blue{/*  Pearl */}</option>
+                <option value="Pacific Blue Metallic">Pacific Blue{/*  Metallic */}</option>
+                <option value="North Shore Pearl">North Shore{/*  Pearl */}</option>
+
+                <option value="Ash Green Metallic">Ash Green{/*  Metallic */}</option>
+                <option value="Sunset Orange">Sunset Orange</option>
+                {/* <option value="Crystal Black Pearl">Crystal Black Pearl</option> */}
                 {/* <option value="Platinum White Pearl">Platinum White Pearl</option> */}
                 {/* <option value="Radiant Red Metallic">Radiant Red Metallic</option> */}
                 {/* <option value="Radiant Red Metallic II">Radiant Red Metallic II</option> */}
                 {/* <option value="Solar Silver Metallic">Solar Silver Metallic</option> */}
-                <option value="Still Night Pearl">Still Night Pearl</option>
-                <option value="Urban Gray Pearl">Urban Gray{/*  Pearl */}</option>
-                <option value="Diffused Sky Blue Pearl">Diffused Sky {/* Blue Pearl */}</option>
                 {/* <option value="Lunar Silver Metallic">Lunar Silver Metallic</option> */}
-                <option value="Sonic Gray Pearl">Sonic Gray{/*  Pearl */}</option>
-                <option value="North Shore Pearl">North Shore{/*  Pearl */}</option>
                 {/* <option value="Scarlet Red Metallic">Scarlet Red Metallic</option> */}
-                <option value="Pacific Blue Metallic">Pacific Blue{/*  Metallic */}</option>
                 {/* <option value="Raven Black">Raven Black</option> */}
                 {/* <option value="Mercury Silver Metallic">Mercury Silver Metallic</option> */}
                 {/* <option value="Snowfall Pearl">Snowfall Pearl</option> */}
-                <option value="Blue Lagoon Pearl">Blue Lagoon{/*  Pearl */}</option>
                 {/* <option value="Rallye Red">Rallye Red</option> */}
-                <option value="Modern Steel Metallic">Modern Steel{/*  Metallic */}</option>
-                <option value="Obsidian Blue Pearl">Obsidian Blue{/*  Pearl */}</option>
-                <option value="Ash Green Metallic">Ash Green{/*  Metallic */}</option>
-                <option value="Sunset Orange">Sunset Orange</option>
-                <option value="Boost Blue Pearl">Boost Blue{/*  Pearl */}</option>
                 {/* <option value="Milano Red">Milano Red</option> */}
               </select>
             </div>
@@ -372,7 +374,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="flex justify-center col-span-3 relative group">
+        <div className="absolute top-6 right-6 group">
           <select
             value={mode}
             onChange={(e) => setMode(e.target.value)}
