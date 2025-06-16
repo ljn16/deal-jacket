@@ -168,7 +168,7 @@ export default function Home() {
               />
               <select
                 onChange={(e) => setForm(prev => ({ ...prev, color: e.target.value }))}
-                className="text-xs rounded-l-none rounded-r bg-gradient-to-br from-red-500 via-yellow-400 to-green-500 text-white hover:opacity-90 w-8"
+                className="text-xs rounded-l-none rounded-r bg-gradient-to-br from-red-500 via-yellow-400 to-green-500 text-white hover:opacity-90 w-10 dark:bg-gray-800 dark:text-white"
                 title="Honda colors"
               >
                 
@@ -469,6 +469,7 @@ export default function Home() {
             Print Jacket
           </span>
         </button>
+        
       </div>
     </div>
   );
