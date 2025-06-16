@@ -80,16 +80,16 @@ export default function Home() {
     draw(form.phone, 625, 555);
     draw(form.salesperson, 625, 530);
 
-    if (mode === "intake") {
-      draw(form.keyCode || "", 700, 100); // placeholder
-    } else if (mode === "payoff") {
-      draw(form.bank || "", 700, 90);
-      draw(form.city || "", 700, 80);
-      draw(form.accountNumber || "", 700, 70);
-      draw(form.payOff || "", 700, 60);
-      draw(form.goodThrough || "", 700, 50);
-      draw(form.title ? "Yes" : "No", 700, 40);
-    }
+    // if (mode === "intake") {
+    //   draw(form.keyCode || "", 700, 100); // placeholder
+    // } else if (mode === "payoff") {
+    //   draw(form.bank || "", 700, 90);
+    //   draw(form.city || "", 700, 80);
+    //   draw(form.accountNumber || "", 700, 70);
+    //   draw(form.payOff || "", 700, 60);
+    //   draw(form.goodThrough || "", 700, 50);
+    //   draw(form.title ? "Yes" : "No", 700, 40);
+    // }
 
     const pdfBytes = await pdfDoc.save();
     const blob = new Blob([new Uint8Array(pdfBytes)], { type: "application/pdf" });
@@ -168,7 +168,7 @@ export default function Home() {
               />
               <select
                 onChange={(e) => setForm(prev => ({ ...prev, color: e.target.value }))}
-                className="text-xs rounded-l-none rounded-r bg-gradient-to-br from-red-500 via-yellow-400 to-green-500 text-white hover:opacity-90 w-10"
+                className="text-xs rounded-l-none rounded-r bg-gradient-to-br from-red-500 via-yellow-400 to-green-500 text-white hover:opacity-90 w-8"
                 title="Honda colors"
               >
                 
@@ -385,9 +385,9 @@ export default function Home() {
             <option value="payoff">Payoff Mode</option>
             <option value="billing">Billing Mode</option>
           </select>
-          <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
             additional modes not currently setup
-          </span>
+            </span>
         </div>
         {mode !== "normal" && (
           <div>
@@ -397,7 +397,7 @@ export default function Home() {
                 <input
                   name="keyCode"
                   placeholder="Key Code"
-                  value={form.keyCode || ""}
+                  // value={form.keyCode || ""}
                   onChange={handleChange}
                   className="border p-2 rounded"
                 />
@@ -407,35 +407,35 @@ export default function Home() {
                   <input
                     name="bank"
                     placeholder="Bank"
-                    value={form.bank || ""}
+                    // value={form.bank || ""}
                     onChange={handleChange}
                     className="border p-2 rounded"
                   />
                   <input
                     name="city"
                     placeholder="City"
-                    value={form.city || ""}
+                    // value={form.city || ""}
                     onChange={handleChange}
                     className="border p-2 rounded"
                   />
                   <input
                     name="accountNumber"
                     placeholder="Account Number"
-                    value={form.accountNumber || ""}
+                    // value={form.accountNumber || ""}
                     onChange={handleChange}
                     className="border p-2 rounded"
                   />
                   <input
                     name="payOff"
                     placeholder="Pay Off"
-                    value={form.payOff || ""}
+                    // value={form.payOff || ""}
                     onChange={handleChange}
                     className="border p-2 rounded"
                   />
                   <input
                     name="goodThrough"
                     placeholder="Good Through"
-                    value={form.goodThrough || ""}
+                    // value={form.goodThrough || ""}
                     onChange={handleChange}
                     className="border p-2 rounded"
                   />
@@ -443,8 +443,8 @@ export default function Home() {
                     <input
                       type="checkbox"
                       name="title"
-                      checked={form.title || false}
-                      onChange={(e) => setForm({ ...form, title: e.target.checked })}
+                      // checked={form.title || false}
+                      // onChange={(e) => setForm({ ...form, title: e.target.checked })}
                       className="mr-2"
                     />
                     Title
