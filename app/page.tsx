@@ -153,13 +153,13 @@ export default function Home() {
               onChange={handleChange}
               className="border p-2 rounded"
             />
-            <div className="flex gap-2">
+            <div className="flex">
               <input
                 name="purchaseDate"
                 placeholder="Purchase Date"
                 value={form.purchaseDate}
                 onChange={handleChange}
-                className="border p-2 rounded w-full"
+                className="border border-r-0 p-2 rounded-r-none rounded-l w-full"
               />
               <button
                 type="button"
@@ -168,7 +168,7 @@ export default function Home() {
                   const formattedDate = `${String(today.getMonth() + 1).padStart(2, '0')}/${String(today.getDate()).padStart(2, '0')}/${today.getFullYear()}`;
                   setForm((prev) => ({ ...prev, purchaseDate: formattedDate }));
                 }}
-                className="w-16 text-xs rounded bg-gray-400 text-white hover:bg-gray-500"
+                className="w-16 text-xs rounded-l-none rounded-r bg-gray-400 text-white hover:bg-gray-500"
               >
                 <img
                   src="/icons/today-icon-white.png"
@@ -197,13 +197,13 @@ export default function Home() {
               onChange={handleChange}
               className="border p-2 rounded"
             />
-            <div className="flex gap-2">
+            <div className="flex">
               <input
                 name="dateSold"
                 placeholder="Date Sold"
                 value={form.dateSold}
                 onChange={handleChange}
-                className="border p-2 rounded w-full"
+                className="border border-r-0 p-2 rounded-r-none rounded-l w-full"
               />
               <button
                 type="button"
@@ -212,7 +212,7 @@ export default function Home() {
                   const formattedDate = `${String(today.getMonth() + 1).padStart(2, '0')}/${String(today.getDate()).padStart(2, '0')}/${today.getFullYear()}`;
                   setForm((prev) => ({ ...prev, dateSold: formattedDate }));
                 }}
-                className="w-16 text-xs rounded bg-gray-400 text-white hover:bg-gray-500"
+                className="w-16 text-xs rounded-l-none rounded-r bg-gray-400 text-white hover:bg-gray-500"
               >
                 <img
                   src="/icons/today-icon-white.png"
