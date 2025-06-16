@@ -98,22 +98,47 @@ export default function Home() {
       <div className="grid grid-cols-3 gap-8">
         {/* Vehicle Info */}
         <div>
-          <h2 className="text-lg font-semibold mb-2">Vehicle Info</h2>
+          <h2 className="text-lg font-semibold mb-2 text-center">Vehicle Info</h2>
           <div className="flex flex-col gap-4">
             <input
+              list="years"
               name="year"
-              placeholder="year"
+              placeholder="Year"
               value={form.year}
               onChange={handleChange}
               className="border p-2 rounded"
             />
+            <datalist id="years">
+              {Array.from({ length: 15 }, (_, i) => {
+                const year = new Date().getFullYear() - i;
+                return <option key={year} value={year} />;
+              })}
+            </datalist>
             <input
+              list="makes"
               name="make"
-              placeholder="Make / Model"
+              placeholder="Make"
               value={form.make}
               onChange={handleChange}
               className="border p-2 rounded"
             />
+            <datalist id="makes">
+              <option value="Honda " />
+              <option value="Toyota " />
+              <option value="Ford " />
+              <option value="Chevrolet " />
+              <option value="Nissan " />
+              <option value="Hyundai " />
+              <option value="Kia " />
+              <option value="Volkswagen " />
+              <option value="Subaru " />
+              <option value="Jeep " />
+              <option value="BMW " />
+              <option value="Mercedes-Benz " />
+              <option value="Audi " />
+              <option value="Mazda " />
+              <option value="Tesla " />
+            </datalist>
             <input
               name="vin"
               placeholder="VIN"
@@ -128,13 +153,30 @@ export default function Home() {
               onChange={handleChange}
               className="border p-2 rounded"
             />
-            <input
-              name="purchaseDate"
-              placeholder="Purchase Date"
-              value={form.purchaseDate}
-              onChange={handleChange}
-              className="border p-2 rounded"
-            />
+            <div className="flex gap-2">
+              <input
+                name="purchaseDate"
+                placeholder="Purchase Date"
+                value={form.purchaseDate}
+                onChange={handleChange}
+                className="border p-2 rounded w-full"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  const today = new Date();
+                  const formattedDate = `${String(today.getMonth() + 1).padStart(2, '0')}/${String(today.getDate()).padStart(2, '0')}/${today.getFullYear()}`;
+                  setForm((prev) => ({ ...prev, purchaseDate: formattedDate }));
+                }}
+                className="w-16 text-xs rounded bg-gray-400 text-white hover:bg-gray-500"
+              >
+                <img
+                  src="/icons/today-icon-white.png"
+                  className="w-4 h-4 mx-auto"
+                  alt="Today icon"
+                />
+              </button>
+            </div>
             <input
               name="email"
               placeholder="Email"
@@ -146,7 +188,7 @@ export default function Home() {
         </div>
         {/* Stock Details */}
         <div>
-          <h2 className="text-lg font-semibold mb-2">Stock Details</h2>
+          <h2 className="text-lg font-semibold mb-2 text-center">Stock Details</h2>
           <div className="flex flex-col gap-4">
             <input
               name="stock"
@@ -155,13 +197,30 @@ export default function Home() {
               onChange={handleChange}
               className="border p-2 rounded"
             />
-            <input
-              name="dateSold"
-              placeholder="Date Sold"
-              value={form.dateSold}
-              onChange={handleChange}
-              className="border p-2 rounded"
-            />
+            <div className="flex gap-2">
+              <input
+                name="dateSold"
+                placeholder="Date Sold"
+                value={form.dateSold}
+                onChange={handleChange}
+                className="border p-2 rounded w-full"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  const today = new Date();
+                  const formattedDate = `${String(today.getMonth() + 1).padStart(2, '0')}/${String(today.getDate()).padStart(2, '0')}/${today.getFullYear()}`;
+                  setForm((prev) => ({ ...prev, dateSold: formattedDate }));
+                }}
+                className="w-16 text-xs rounded bg-gray-400 text-white hover:bg-gray-500"
+              >
+                <img
+                  src="/icons/today-icon-white.png"
+                  className="w-4 h-4 mx-auto"
+                  alt="Today icon"
+                />
+              </button>
+            </div>
             <input
               name="mileage"
               placeholder="Mileage"
@@ -173,7 +232,7 @@ export default function Home() {
         </div>
         {/* Customer Info */}
         <div>
-          <h2 className="text-lg font-semibold mb-2">Customer Info</h2>
+          <h2 className="text-lg font-semibold mb-2 text-center">Customer Info</h2>
           <div className="flex flex-col gap-4">
             <input
               name="soldTo"
@@ -235,7 +294,14 @@ export default function Home() {
               onClick={resetForm}
               className=" p-2 rounded bg-red-600 text-white hover:bg-red-700"
             >
-              Reset
+              <span className="flex items-center justify-center gap-2">
+                <img
+                  src="/icons/reset-icon-white.png"
+                  alt="Reset Icon"
+                  className="w-4 h-4"
+                />
+                Reset
+              </span>
             </button>
           </div>
         </div>
@@ -244,7 +310,14 @@ export default function Home() {
             onClick={generatePDF}
             className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
           >
-            Print Jacket
+            <span className="flex items-center justify-center gap-2 font-bold">
+              <img
+                src="/icons/print-icon-white.png"
+                alt="Print Icon"
+                className="w-4 h-4"
+              />
+              Print Jacket
+            </span>
           </button>
         </div>
       </div>
