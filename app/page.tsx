@@ -89,35 +89,35 @@ export default function Home() {
             />
             <input
               name="make"
-              placeholder="make"
+              placeholder="Make / Model"
               value={form.make}
               onChange={handleChange}
               className="border p-2 rounded"
             />
             <input
               name="vin"
-              placeholder="vin"
+              placeholder="VIN"
               value={form.vin}
               onChange={handleChange}
               className="border p-2 rounded"
             />
             <input
               name="color"
-              placeholder="color"
+              placeholder="Color"
               value={form.color}
               onChange={handleChange}
               className="border p-2 rounded"
             />
             <input
               name="purchaseDate"
-              placeholder="purchaseDate"
+              placeholder="Purchase Date"
               value={form.purchaseDate}
               onChange={handleChange}
               className="border p-2 rounded"
             />
             <input
               name="email"
-              placeholder="email"
+              placeholder="Email"
               value={form.email}
               onChange={handleChange}
               className="border p-2 rounded"
@@ -130,21 +130,21 @@ export default function Home() {
           <div className="flex flex-col gap-4">
             <input
               name="stock"
-              placeholder="stock"
+              placeholder="Stock #"
               value={form.stock}
               onChange={handleChange}
               className="border p-2 rounded"
             />
             <input
               name="dateSold"
-              placeholder="dateSold"
+              placeholder="Date Sold"
               value={form.dateSold}
               onChange={handleChange}
               className="border p-2 rounded"
             />
             <input
               name="mileage"
-              placeholder="mileage"
+              placeholder="Mileage"
               value={form.mileage}
               onChange={handleChange}
               className="border p-2 rounded"
@@ -157,35 +157,35 @@ export default function Home() {
           <div className="flex flex-col gap-4">
             <input
               name="soldTo"
-              placeholder="soldTo"
+              placeholder="Sold To"
               value={form.soldTo}
               onChange={handleChange}
               className="border p-2 rounded"
             />
             <input
               name="addressL1"
-              placeholder="addressL1"
+              placeholder="Address (line 1)"
               value={form.addressL1}
               onChange={handleChange}
               className="border p-2 rounded"
             />
             <input
               name="addressL2"
-              placeholder="addressL2"
+              placeholder="Address (line 2)"
               value={form.addressL2}
               onChange={handleChange}
               className="border p-2 rounded"
             />
             <input
               name="phone"
-              placeholder="phone"
+              placeholder="Phone #"
               value={form.phone}
               onChange={handleChange}
               className="border p-2 rounded"
             />
             <input
               name="salesperson"
-              placeholder="salesperson"
+              placeholder="Salesperson"
               value={form.salesperson}
               onChange={handleChange}
               className="border p-2 rounded"
