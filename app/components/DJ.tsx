@@ -24,7 +24,7 @@ export default function DJ() {
   });
 
   const [mode, setMode] = useState("normal");
-  const [useCpoLayout, setUseCpoLayout] = useState(false);
+  const [useCpoLayout/* , setUseCpoLayout */] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
