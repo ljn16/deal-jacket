@@ -24,6 +24,7 @@ export default function DJ() {
   });
 
   const [mode, setMode] = useState("normal");
+  const [useCpoLayout, setUseCpoLayout] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -135,7 +136,20 @@ export default function DJ() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-8">
+      <div className="mb-4 flex items-center gap-3">
+        <span className="text-sm">CPO</span>
+        <label className="relative inline-flex items-center">
+          <input
+            type="checkbox"
+            className="sr-only"
+            disabled
+          />
+          <div className="w-11 h-6 bg-gray-200 rounded-full cursor-not-allowed"></div>
+          <div className="absolute left-0.5 top-0.5 w-5 h-5 bg-gray-400 rounded-full"></div>
+        </label>
+      </div>
+
+      <div className={`${useCpoLayout ? 'flex flex-col gap-12' : 'grid grid-cols-3 gap-8'}`}>
         {/* Vehicle Info */}
         <div>
           <h2 className="text-lg font-semibold mb-2 text-center">Vehicle Info</h2>

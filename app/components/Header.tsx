@@ -13,7 +13,7 @@ export default function DealJacketForm({ formType, setFormType }: DealJacketForm
         <div className="flex w-full  ">
         {([
           { label: 'Normal Jacket', value: 'normal' },
-          { label: 'CPO Jacket', value: 'cpo' },
+        //   { label: 'CPO Jacket', value: 'cpo' },
           { label: 'Window Tag', value: 'window' },
         ] as const).map(({ label, value }) => (
           <button

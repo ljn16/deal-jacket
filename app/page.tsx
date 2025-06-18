@@ -7,7 +7,7 @@ import Footer from '@/app/components/Footer';
 import Header from '@/app/components/Header';
 
 export default function Home() {
-  const [formType, setFormType] = useState<'normal' | 'cpo' | 'window'>('normal');
+  const [formType, setFormType] = useState<'normal' | 'window'>('normal');
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -17,8 +17,6 @@ export default function Home() {
         <div className="shadow-xl border rounded-lg p-6 max-w-4xl mx-auto bg-black/5 border-black/5 shadow-black/5 dark:bg-white/5 dark:border-white/5 dark:shadow-white/5">
 
           {formType === 'normal' && (<DJ />)}
-          {/* {formType === 'cpo' && (<CPO />)} */}
-          {formType === 'cpo' && (<div className='text-center'>CPO Jacket not set up yet</div>)}
           {formType === 'window' && (<div className='text-center'>Window Tag not set up yet</div>)}
         </div>
 
