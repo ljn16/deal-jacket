@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 import DJ from '@/app/components/DJ';
-import CPO from '@/app/components/CPO';
+// import CPO from '@/app/components/CPO';
 import Footer from '@/app/components/Footer';
 import Header from '@/app/components/Header';
 
