@@ -25,6 +25,7 @@ export default function DJ() {
 
   const [mode, setMode] = useState("normal");
   const [useCpoLayout/* , setUseCpoLayout */] = useState(false);
+  const [strikeMileage, setStrikeMileage] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -333,13 +334,33 @@ export default function DJ() {
                 />
               </button>
             </div>
-            <input
-              name="mileage"
-              placeholder="Mileage"
-              value={form.mileage}
-              onChange={handleChange}
-              className="border p-2 rounded"
-            />
+            {/* Mileage field with strike toggle */}
+            <div className="flex flex-col gap-1">
+              <input
+                name="mileage"
+                placeholder="Mileage"
+                value={form.mileage}
+                onChange={handleChange}
+                className={`border p-2 rounded `}
+              />
+              {strikeMileage && (
+                <div className="text-sm text-gray-800 pl-2 pt-1">{form.mileage}</div>
+              )}
+              <div className="flex justify-end items-center gap-2 opacity-15">
+                <span className="text-sm">↳ Strike prev. mileage</span>
+                <label className="relative inline-flex items-center cursor-not-allowed">
+                  <input
+                    type="checkbox"
+                    className="sr-only peer"
+                    checked={strikeMileage}
+                    onChange={(e) => setStrikeMileage(e.target.checked)}
+                    disabled
+                  />
+                  <div className="w-11 h-6 bg-gray-300 rounded-full peer-checked:bg-blue-600 transition-colors duration-200"></div>
+                  <div className="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-200 transform peer-checked:translate-x-full"></div>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
         {/* Customer Info */}

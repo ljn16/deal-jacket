@@ -5,6 +5,7 @@ import DJ from '@/app/components/DJ';
 // import CPO from '@/app/components/CPO';
 import Footer from '@/app/components/Footer';
 import Header from '@/app/components/Header';
+import WindowTag from './components/WindowTag';
 
 export default function Home() {
   const [formType, setFormType] = useState<'normal' | 'cpo' | 'window'>('normal');
@@ -18,11 +19,12 @@ export default function Home() {
 
           {formType === 'normal' && (<DJ />)}
           {formType === 'window' && (
-            <div className='text-center'>
-              <h1 className="text-4xl font-bold text-center">Window Tag Form</h1>
-              <br></br>
-              <p>Window Tag not set up yet</p>
-            </div>
+            // <div className='text-center'>
+            //   <h1 className="text-4xl font-bold text-center">Window Tag Form</h1>
+            //   <br></br>
+            //   <p>Window Tag not set up yet</p>
+            // </div>
+            <WindowTag />
           )}
         </div>
 
