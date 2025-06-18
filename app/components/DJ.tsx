@@ -118,17 +118,17 @@ export default function DJ() {
     <div className="relative px-6 max-w-4xl mx-auto">
         
       <div className="relative mb-4 p-5">
-        <h1 className="text-4xl font-bold text-center">Deal Jacket Form</h1>
+        <h1 className="text-4xl font-bold text-center">Deal Jacket</h1>
         <div className="absolute top-1/2 right-0 transform -translate-y-1/2 group">
           <select
             value={mode}
             onChange={(e) => setMode(e.target.value)}
             className="bg-gray-100 text-gray-800 px-4 py-2 rounded border"
           >
-            <option value="normal">Normal Mode</option>
-            <option value="intake">Intake Mode</option>
-            <option value="payoff">Payoff Mode</option>
-            <option value="billing">Billing Mode</option>
+            <option value="normal">Normal</option>
+            <option value="intake">Intake</option>
+            <option value="payoff">Payoff</option>
+            <option value="billing">Billing</option>
           </select>
           <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
             additional modes not currently setup
