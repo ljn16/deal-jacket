@@ -114,7 +114,7 @@ export default function DJ() {
   };
 
   return (
-    <div className="relative p-6 max-w-4xl mx-auto">
+    <div className="relative px-6 max-w-4xl mx-auto">
         
       <div className="relative mb-4 p-5">
         <h1 className="text-4xl font-bold text-center">Deal Jacket Form</h1>
