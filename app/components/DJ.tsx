@@ -472,7 +472,7 @@ export default function DJ() {
       <div className="col-span-3 mt-4">
         <button
           onClick={generatePDF}
-          className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="w-full bg-blue-600 text-white mt-5 px-4 py-2 rounded hover:bg-blue-700"
         >
           <span className="flex items-center justify-center gap-2 font-bold">
             <img

@@ -9,7 +9,7 @@ interface DealJacketFormProps {
 export default function DealJacketForm({ formType, setFormType }: DealJacketFormProps) {
   return (
     <div>
-      <div className="relative p-6 max-w-4xl mx-auto ">
+      <div className="relative py-6 max-w-4xl mx-auto ">
         <div className="flex w-full  ">
         {([
           { label: 'Normal Jacket', value: 'normal' },

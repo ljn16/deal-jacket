@@ -14,7 +14,7 @@ export default function Home() {
       <Header formType={formType} setFormType={setFormType} />
 
       <main className="flex-grow">
-        <div className="shadow-md border rounded-lg p-6 max-w-4xl mx-auto border-black/20 shadow-black/20 dark:border-white/20 dark:shadow-white/20">
+        <div className="shadow-xl border rounded-lg p-6 max-w-4xl mx-auto bg-black/5 border-black/5 shadow-black/5 dark:bg-white/5 dark:border-white/5 dark:shadow-white/5">
 
           {formType === 'normal' && (<DJ />)}
           {/* {formType === 'cpo' && (<CPO />)} */}
