@@ -56,6 +56,11 @@ export default function DJ() {
     const existingPdfBytes = await fetch("/deal-jacket-template.pdf").then((res) => res.arrayBuffer());
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
     const page = pdfDoc.getPages()[0];
+    // Ensure portrait orientation and correct page size
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { degrees } = await import("pdf-lib");
+    page.setRotation(degrees(0));
+    page.setSize(612, 675); // 12in x 9.375in in PDF points
     const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
     const draw = (
