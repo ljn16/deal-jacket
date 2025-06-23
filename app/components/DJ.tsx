@@ -56,9 +56,15 @@ export default function DJ() {
     const existingPdfBytes = await fetch("/deal-jacket-template.pdf").then((res) => res.arrayBuffer());
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
     const page = pdfDoc.getPages()[0];
-    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
-    const draw = (text: string, x: number, y: number, size = 10) => {
+    const draw = (
+      text: string,
+      x: number,
+      y: number,
+      size = 16,
+      // font: typeof font = font
+    ) => {
       if (text) {
         page.drawText(text, { x, y, size, font, color: rgb(0, 0, 0) });
       }
