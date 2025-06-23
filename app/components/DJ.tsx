@@ -56,7 +56,8 @@ export default function DJ() {
     const existingPdfBytes = await fetch("/deal-jacket-template.pdf").then((res) => res.arrayBuffer());
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
     const page = pdfDoc.getPages()[0];
-    const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    // const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
     // // Ensure portrait orientation and correct page size
     // // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -77,22 +78,38 @@ export default function DJ() {
     };
 
     // Adjusted coordinates to match screenshot layout
-    draw(form.year, 120, 655);
-    draw(form.make, 120, 630);
-    draw(form.vin, 120, 605);
-    draw(form.color, 120, 580);
-    draw(form.purchaseDate, 180, 555);
+    // draw(form.year, 120, 655);
+    // draw(form.make, 120, 630);
+    // draw(form.vin, 120, 605);
+    // draw(form.color, 120, 580);
+    // draw(form.purchaseDate, 180, 555);
+    // draw(form.email, 120, 400);
+
+    // draw(form.stock, 440, 655);
+    // draw(form.dateSold, 440, 630);
+    // draw(form.mileage, 440, 555);
+
+    // draw(form.soldTo, 625, 630);
+    // draw(form.addressL1, 625, 605);
+    // draw(form.addressL2, 625, 580);
+    // draw(form.phone, 625, 555);
+    // draw(form.salesperson, 625, 530);
+    draw(form.year, 120, 650);
+    draw(form.make, 120, 625);
+    draw(form.vin, 120, 600);
+    draw(form.color, 120, 575);
+    draw(form.purchaseDate, 180, 550);
     draw(form.email, 120, 400);
 
-    draw(form.stock, 440, 655);
-    draw(form.dateSold, 440, 630);
-    draw(form.mileage, 440, 555);
+    draw(form.stock, 440, 650);
+    draw(form.dateSold, 440, 625);
+    draw(form.mileage, 440, 550);
 
-    draw(form.soldTo, 625, 630);
-    draw(form.addressL1, 625, 605);
-    draw(form.addressL2, 625, 580);
-    draw(form.phone, 625, 555);
-    draw(form.salesperson, 625, 530);
+    draw(form.soldTo, 625, 625);
+    draw(form.addressL1, 625, 600);
+    draw(form.addressL2, 625, 575);
+    draw(form.phone, 625, 550);
+    draw(form.salesperson, 625, 525);
 
     // if (mode === "intake") {
     //   draw(form.keyCode || "", 700, 100); // placeholder
